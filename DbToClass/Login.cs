@@ -61,6 +61,7 @@ namespace DbToClass
             panel1.Visible = true;
             var list = opertion.GetFieIdInfo(tableName);
             var table = list.ToDataTable<Fieid>();
+            var list2 = ListExtension.ConvertToList<Fieid>(table);
             dataGridView_FieIdInfo.DataSource = table;
 
             panel1.Visible = false;

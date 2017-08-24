@@ -46,6 +46,7 @@
     <Compile Include="DBOpertion.cs" />
     <Compile Include="DbToText\DbToModel.cs" />
     <Compile Include="DbToText\DBToSqlOption.cs" />
+    <Compile Include="Extension\DataTableConvertHelper.cs" />
     <Compile Include="Extension\ListExtension.cs" />
     <Compile Include="models\Fieid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
