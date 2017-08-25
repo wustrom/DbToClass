@@ -63,7 +63,7 @@ namespace Common.Extension
         /// </summary>  
         /// <param name="dt"></param>  
         /// <returns></returns>  
-        public static List<T> ConvertToList<T>(DataTable dt) where T : class, new()
+        public static List<T> ConvertToList<T>(this DataTable dt) where T : class, new()
         {
             // 定义集合  
             List<T> ts = new List<T>();

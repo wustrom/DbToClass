@@ -48,8 +48,7 @@ namespace Common.DbToText
             StringBuilder strBuliderContent = new StringBuilder();
             StringBuilder strBuliderPrimaryKey = new StringBuilder();
             strBuliderContent.Append(tab).Append("public partial class ").Append(TableName).Append("Oper : SingleTon<").Append(TableName).Append("Oper>")
-                             .Append(Wrap).Append(tab).Append(leftbra).Append(Wrap).Append(tab).Append(tab).Append("public string ConnString=ConfigurationManager.AppSettings[\"ConnString\"].ToString();")
-                             .Append(Wrap).Append(tab).Append(tab);
+                             .Append(Wrap).Append(tab).Append(leftbra).Append(Wrap).Append(tab).Append(tab).Append("public string ConnString = ConfigurationManager.AppSettings[\"ConnString\"].ToString();");
             var insert = InsertSql(Fieids, TableName);
             var delete = DeleteSql(Fieids, TableName);
             var update = UpdataSql(Fieids, TableName);
@@ -87,7 +86,7 @@ namespace Common.DbToText
             {
                 if (fieid.PrimaryKey == true)
                 {
-                    strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
+                    strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("part2.Append(\"").Append(fieid.Fieid_Name).Append(" = @").Append(fieid.Fieid_Name).Append("\");")
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("parm.Add(\"").Append(fieid.Fieid_Name).Append("\", ").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(");")
@@ -95,7 +94,7 @@ namespace Common.DbToText
                 }
                 else
                 {
-                    strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
+                    strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if (flag)")
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(leftbra)
@@ -110,15 +109,15 @@ namespace Common.DbToText
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra).Append(Wrap);
                 }
             }
-            strBuliderContent.Append(strBuliderSql).Append(Wrap).Append(tab).Append(tab).Append(tab).Append("sql.Append(part1).Append(\" where \").Append(part2);");
+            strBuliderContent.Append(strBuliderSql).Append(tab).Append(tab).Append(tab).Append("sql.Append(part1).Append(\" where \").Append(part2);");
             strBuliderContent.Append(Wrap).Append(tab).Append(tab).Append(tab).Append("using (var conn = new SqlConnection(ConnString))")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Open();")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("var r = conn.Execute(sql.ToString(), parm);")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("conn.Close();")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("return r > 0;")
-                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra)
-                             .Append(Wrap).Append(tab).Append(rightbra).Append(Wrap);
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("var r = conn.Execute(sql.ToString(), parm);")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Close();")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("return r > 0;")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra).Append(Wrap);
             return strBuliderContent;
         }
 
@@ -155,10 +154,12 @@ namespace Common.DbToText
             strBuliderContent.Append(Wrap).Append(tab).Append(tab).Append(tab).Append("using (var conn = new SqlConnection(ConnString))")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Open();")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("var r = conn.Execute(@").Append("\"")
-                             .Append(strBuliderSql).Append("\",parm);").Append(Wrap).Append(tab).Append(tab).Append(tab)
-                             .Append("conn.Close();").Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("return r > 0;")
-                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra).Append(Wrap).Append(tab).Append(rightbra).Append(Wrap);
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("var r = conn.Execute(@").Append("\"")
+                             .Append(strBuliderSql).Append("\", parm);")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Close();")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("return r > 0;")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra).Append(Wrap);
 
             return strBuliderContent;
         }
@@ -174,7 +175,7 @@ namespace Common.DbToText
             var tableName = TableName.ToLower();
             StringBuilder strBuliderContent = new StringBuilder();
             StringBuilder strBuliderSql = new StringBuilder();
-            strBuliderContent.Append(tab).Append(tab).Append("/// <summary>")
+            strBuliderContent.Append(Wrap).Append(tab).Append(tab).Append("/// <summary>")
                              .Append(Wrap).Append(tab).Append(tab).Append("/// 插入")
                              .Append(Wrap).Append(tab).Append(tab).Append("/// </summary>")
                              .Append(Wrap).Append(tab).Append(tab).Append("/// <param name=\"").Append(tableName).Append("\"></param>")
@@ -190,7 +191,7 @@ namespace Common.DbToText
             {
                 if (fieid.PrimaryKey != true)
                 {
-                    strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
+                    strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if (flag)")
                                  .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(leftbra)
@@ -208,15 +209,15 @@ namespace Common.DbToText
                 }
             }
             strBuliderContent.Append(strBuliderSql)
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("sql.Append(\"(\").Append(part1).Append(\") values(\").Append(part2).Append(\")\");").Append(Wrap);
+                             .Append(tab).Append(tab).Append(tab).Append("sql.Append(\"(\").Append(part1).Append(\") values(\").Append(part2).Append(\")\");");
             strBuliderContent.Append(Wrap).Append(tab).Append(tab).Append(tab).Append("using (var conn = new SqlConnection(ConnString))")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Open();")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("var r = conn.Execute(sql.ToString(), parm);")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("conn.Close();")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("return r > 0;")
-                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra)
-                             .Append(Wrap).Append(tab).Append(rightbra);
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("var r = conn.Execute(sql.ToString(), parm);")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Close();")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("return r > 0;")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra);
             return strBuliderContent;
         }
 
@@ -240,7 +241,7 @@ namespace Common.DbToText
                              .Append(Wrap).Append(tab).Append(tab).Append("public List<").Append(TableName).Append("> Select(").Append(TableName).Append(" ").Append(tableName).Append(")")
                              .Append(Wrap).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("StringBuilder sql = new StringBuilder(\"Select \");")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".Field.IsNullOrEmpty())")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".Field.IsNullOrEmpty())")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("sql.Append(").Append(tableName).Append(".Field);")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
@@ -254,7 +255,7 @@ namespace Common.DbToText
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("bool flag = true;").Append(Wrap);
             foreach (Fieid fieid in fieids)
             {
-                strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
+                strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if (flag)")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(leftbra)
@@ -269,16 +270,16 @@ namespace Common.DbToText
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra).Append(Wrap);
             }
             strBuliderContent.Append(strBuliderSql)
-                             .Append(Wrap).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".GroupBy.IsNullOrEmpty())")
-                             .Append(Wrap).Append(tab).Append(tab).Append(leftbra)
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("part1.Append(\" Group By \").Append(").Append(tableName).Append(".GroupBy).Append(\" \");")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("flag = false;")
-                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra)
-                             .Append(Wrap).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".OrderBy.IsNullOrEmpty())")
-                             .Append(Wrap).Append(tab).Append(tab).Append(leftbra)
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("part1.Append(\" Order By \").Append(").Append(tableName).Append(".OrderBy).Append(\" \");")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("flag = false;")
-                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".GroupBy.IsNullOrEmpty())")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("part1.Append(\" Group By \").Append(").Append(tableName).Append(".GroupBy).Append(\" \");")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("flag = false;")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".OrderBy.IsNullOrEmpty())")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("part1.Append(\" Order By \").Append(").Append(tableName).Append(".OrderBy).Append(\" \");")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("flag = false;")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if (!flag)")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("sql.Append(\" where \");")
@@ -290,13 +291,13 @@ namespace Common.DbToText
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Open();")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("var r = (List<").Append(TableName).Append(">)conn.Query<").Append(TableName).Append(">(sql.ToString(), parm);")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Close();")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if(r == null)")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if (r == null)")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(tab).Append("r = new List<").Append(TableName).Append(">();")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(rightbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("return r;")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
-                             .Append(Wrap).Append(tab).Append(rightbra).Append(Wrap);
+                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra).Append(Wrap);
             return strBuliderContent;
         }
 
@@ -318,10 +319,10 @@ namespace Common.DbToText
                              .Append(Wrap).Append(tab).Append(tab).Append("/// <param name=\"pageSize\">页面大小</param>")
                              .Append(Wrap).Append(tab).Append(tab).Append("/// <param name=\"pageNo\">页面编号</param>")
                              .Append(Wrap).Append(tab).Append(tab).Append("/// <returns>对象列表</returns>")
-                             .Append(Wrap).Append(tab).Append(tab).Append("public List<").Append(TableName).Append("> SelectByPage(").Append(TableName).Append(" ").Append(tableName).Append(",int pageSize,int pageNo)")
+                             .Append(Wrap).Append(tab).Append(tab).Append("public List<").Append(TableName).Append("> SelectByPage(").Append(TableName).Append(" ").Append(tableName).Append(", int pageSize, int pageNo)")
                              .Append(Wrap).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("StringBuilder sql = new StringBuilder(\"Select Top \").Append(pageSize).Append(\" \");")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".Field.IsNullOrEmpty())")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".Field.IsNullOrEmpty())")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("sql.Append(").Append(tableName).Append(".Field);")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
@@ -337,7 +338,7 @@ namespace Common.DbToText
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("bool flag = true;").Append(Wrap);
             foreach (Fieid fieid in fieids)
             {
-                strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
+                strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".").Append(fieid.Fieid_Name).Append(".IsNullOrEmpty())")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if (flag)")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(leftbra)
@@ -355,22 +356,23 @@ namespace Common.DbToText
             {
                 if (fieid.PrimaryKey == true)
                 {
-                    strBuliderSql.Append(tab).Append(tab).Append("if(!flag)")
-                                 .Append(Wrap).Append(tab).Append(tab).Append(leftbra)
-                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("strBuliderPage.Append(\" and\");")
-                                 .Append(Wrap).Append(tab).Append(tab).Append(rightbra);
-                    strBuliderSql.Append("strBuliderPage.Append(\" ").Append(fieid.Fieid_Name).Append(" not in (\").Append(\"Select Top \").Append(pageSize * (pageNo - 1)).Append(\" ").Append(fieid.Fieid_Name).Append(" from ").Append(TableName).Append(" \");");
-                    strBuliderSql.Append(Wrap).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".GroupBy.IsNullOrEmpty())")
-                                 .Append(Wrap).Append(tab).Append(tab).Append(leftbra)
-                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("strBuliderPage.Append(\" Group By \").Append(").Append(tableName).Append(".GroupBy).Append(\" \");")
-                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("flag = false;")
-                                 .Append(Wrap).Append(tab).Append(tab).Append(rightbra)
-                                 .Append(Wrap).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".OrderBy.IsNullOrEmpty())")
-                                 .Append(Wrap).Append(tab).Append(tab).Append(leftbra)
-                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("strBuliderPage.Append(\" Order By \").Append(").Append(tableName).Append(".OrderBy).Append(\" \");")
-                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("flag = false;")
-                                 .Append(Wrap).Append(tab).Append(tab).Append(rightbra);
-                    strBuliderSql.Append(Wrap).Append(tab).Append(tab).Append("strBuliderPage.Append(\" )\");");
+                    strBuliderSql.Append(tab).Append(tab).Append(tab).Append("if (!flag)")
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("strBuliderPage.Append(\" and\");")
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra);
+                    strBuliderSql.Append(Wrap).Append(tab).Append(tab).Append(tab).Append("strBuliderPage.Append(\" ").Append(fieid.Fieid_Name)
+                                 .Append(" not in (\").Append(\"Select Top \").Append(pageSize * (pageNo - 1)).Append(\" ").Append(fieid.Fieid_Name).Append(" from ").Append(TableName).Append(" \");");
+                    strBuliderSql.Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".GroupBy.IsNullOrEmpty())")
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("strBuliderPage.Append(\" Group By \").Append(").Append(tableName).Append(".GroupBy).Append(\" \");")
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("flag = false;")
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".OrderBy.IsNullOrEmpty())")
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("strBuliderPage.Append(\" Order By \").Append(").Append(tableName).Append(".OrderBy).Append(\" \");")
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("flag = false;")
+                                 .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra);
+                    strBuliderSql.Append(Wrap).Append(tab).Append(tab).Append(tab).Append("strBuliderPage.Append(\" )\");");
                 }
             }
             strBuliderContent.Append(strBuliderSql)
@@ -379,27 +381,27 @@ namespace Common.DbToText
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("sql.Append(\" where \");")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("sql.Append(part1).Append(strBuliderPage).Append(part1);");
-            strBuliderContent.Append(Wrap).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".GroupBy.IsNullOrEmpty())")
-                             .Append(Wrap).Append(tab).Append(tab).Append(leftbra)
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("part2.Append(\" Group By \").Append(").Append(tableName).Append(".GroupBy).Append(\" \");")
-                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra)
-                             .Append(Wrap).Append(tab).Append(tab).Append("if(!").Append(tableName).Append(".OrderBy.IsNullOrEmpty())")
-                             .Append(Wrap).Append(tab).Append(tab).Append(leftbra)
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("part2.Append(\" Order By \").Append(").Append(tableName).Append(".OrderBy).Append(\" \");")
-                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra)
-                             .Append(Wrap).Append(tab).Append(tab).Append("sql.Append(part2);");
+            strBuliderContent.Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".GroupBy.IsNullOrEmpty())")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("part2.Append(\" Group By \").Append(").Append(tableName).Append(".GroupBy).Append(\" \");")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("if (!").Append(tableName).Append(".OrderBy.IsNullOrEmpty())")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("part2.Append(\" Order By \").Append(").Append(tableName).Append(".OrderBy).Append(\" \");")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append("sql.Append(part2);");
             strBuliderContent.Append(Wrap).Append(tab).Append(tab).Append(tab).Append("using (var conn = new SqlConnection(ConnString))")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Open();")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("var r = (List<").Append(TableName).Append(">)conn.Query<").Append(TableName).Append(">(sql.ToString(), parm);")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Close();")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if(r == null)")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if (r == null)")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(tab).Append("r = new List<").Append(TableName).Append(">();")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(rightbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("return r;")
-                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra)
-                             .Append(Wrap).Append(tab).Append(rightbra);
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra);
             return strBuliderContent;
         }
 
@@ -437,12 +439,13 @@ namespace Common.DbToText
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Open();")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("var r = (List<").Append(TableName).Append(">)conn.Query<").Append(TableName).Append(">(\"").Append(strBuliderSql).Append("\", parm);")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("conn.Close();")
-                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if(r == null)")
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("if (r == null)")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(leftbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(tab).Append("r = new List<").Append(TableName).Append(">();")
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append(rightbra)
                              .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(tab).Append("return r;")
-                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra).Append(Wrap).Append(tab).Append(rightbra).Append(Wrap);
+                             .Append(Wrap).Append(tab).Append(tab).Append(tab).Append(rightbra)
+                             .Append(Wrap).Append(tab).Append(tab).Append(rightbra).Append(Wrap);
 
             return strBuliderContent;
         }

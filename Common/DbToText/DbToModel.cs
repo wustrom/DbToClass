@@ -22,6 +22,7 @@ namespace Common.DbToText
         {
             strBuilderHead.Append("using System;")
                           .Append(Wrap).Append(Wrap).Append("namespace ").Append(space).Append(".Models")
+                          
                           .Append(Wrap).Append(leftbra).Append(Wrap);
         }
 
@@ -35,7 +36,8 @@ namespace Common.DbToText
         {
             StringBuilder strBuilderContent = new StringBuilder();
             StringBuilder strBuilderPrimaryKey = new StringBuilder();
-            strBuilderContent.Append(tab).Append("public class ").Append(TableName).Append(Wrap).Append(tab).Append(leftbra)
+            strBuilderContent.Append(tab).Append("[Serializable]").Append(Wrap)
+                             .Append(tab).Append("public class ").Append(TableName).Append(Wrap).Append(tab).Append(leftbra)
                              .Append(Wrap);
             foreach (Fieid fieid in Fieids)
             {
