@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Reflection;
@@ -86,21 +87,42 @@ namespace Common.Extension
                     {
                         // 判断此属性是否有Setter  
                         if (!pi.CanWrite) continue;//该属性不可写，直接跳出  
-                                                   //取值  
+                        // 取值  
                         object value = dr[tempName];
-                        var type_model = System.Type.GetType(pi.PropertyType.FullName, true);
-                        var model = Convert.ChangeType(value, type_model);
-                        //如果非空，则赋给对象的属性  
                         if (value != DBNull.Value)
-                            pi.SetValue(t, model, null);
+                        {
+                            var type_model = System.Type.GetType(pi.PropertyType.FullName, true);
+                            if (type_model.Name.Contains("Nullable"))
+                            {
+                                //如果convertsionType为nullable类，声明一个NullableConverter类，该类提供从Nullable类到基础基元类型的转换
+                                NullableConverter nullableConverter = new NullableConverter(type_model);
+                                //将convertsionType转换为nullable对的基础基元类型
+                                type_model = nullableConverter.UnderlyingType;
+                                object model;
+                                if (type_model.BaseType.Name == "Enum")
+                                    model = Enum.Parse(type_model, value.ToString());
+                                else
+                                    model = Convert.ChangeType(value, type_model);
+                                //如果非空，则赋给对象的属性  
+                                pi.SetValue(t, model, null);
+                            }
+                            else
+                            {
+                                object model;
+                                if (type_model.BaseType.Name == "Enum")
+                                    model = Enum.Parse(type_model, value.ToString());
+                                else
+                                    model = Convert.ChangeType(value, type_model);
+                                //如果非空，则赋给对象的属性  
+                                pi.SetValue(t, model, null);
+                            }
+                        }
                     }
                 }
                 //对象添加到泛型集合中  
                 ts.Add(t);
             }
-
             return ts;
-
         }
     }
 }

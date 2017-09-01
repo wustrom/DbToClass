@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ModelCreateBtn = new System.Windows.Forms.Button();
             this.OperCreateBtn = new System.Windows.Forms.Button();
+            this.SQLite_SQL = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_FieIdInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableName)).BeginInit();
             this.panel1.SuspendLayout();
@@ -63,7 +64,7 @@
             // 
             // ModelBtn
             // 
-            this.ModelBtn.Location = new System.Drawing.Point(120, 560);
+            this.ModelBtn.Location = new System.Drawing.Point(30, 560);
             this.ModelBtn.Name = "ModelBtn";
             this.ModelBtn.Size = new System.Drawing.Size(90, 23);
             this.ModelBtn.TabIndex = 2;
@@ -73,7 +74,7 @@
             // 
             // DbOpertionBtn
             // 
-            this.DbOpertionBtn.Location = new System.Drawing.Point(270, 560);
+            this.DbOpertionBtn.Location = new System.Drawing.Point(150, 560);
             this.DbOpertionBtn.Name = "DbOpertionBtn";
             this.DbOpertionBtn.Size = new System.Drawing.Size(90, 23);
             this.DbOpertionBtn.TabIndex = 3;
@@ -103,7 +104,7 @@
             // 
             // ModelCreateBtn
             // 
-            this.ModelCreateBtn.Location = new System.Drawing.Point(420, 560);
+            this.ModelCreateBtn.Location = new System.Drawing.Point(270, 560);
             this.ModelCreateBtn.Name = "ModelCreateBtn";
             this.ModelCreateBtn.Size = new System.Drawing.Size(90, 23);
             this.ModelCreateBtn.TabIndex = 5;
@@ -113,7 +114,7 @@
             // 
             // OperCreateBtn
             // 
-            this.OperCreateBtn.Location = new System.Drawing.Point(570, 560);
+            this.OperCreateBtn.Location = new System.Drawing.Point(390, 560);
             this.OperCreateBtn.Name = "OperCreateBtn";
             this.OperCreateBtn.Size = new System.Drawing.Size(90, 23);
             this.OperCreateBtn.TabIndex = 6;
@@ -121,11 +122,22 @@
             this.OperCreateBtn.UseVisualStyleBackColor = true;
             this.OperCreateBtn.Click += new System.EventHandler(this.OperCreateBtn_Click);
             // 
+            // SQLite_SQL
+            // 
+            this.SQLite_SQL.Location = new System.Drawing.Point(510, 560);
+            this.SQLite_SQL.Name = "SQLite_SQL";
+            this.SQLite_SQL.Size = new System.Drawing.Size(90, 23);
+            this.SQLite_SQL.TabIndex = 8;
+            this.SQLite_SQL.Text = "SQLite语句";
+            this.SQLite_SQL.UseVisualStyleBackColor = true;
+            this.SQLite_SQL.Click += new System.EventHandler(this.SQLite_SQL_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 612);
+            this.ClientSize = new System.Drawing.Size(734, 611);
+            this.Controls.Add(this.SQLite_SQL);
             this.Controls.Add(this.OperCreateBtn);
             this.Controls.Add(this.ModelCreateBtn);
             this.Controls.Add(this.panel1);
@@ -157,5 +169,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button ModelCreateBtn;
         private System.Windows.Forms.Button OperCreateBtn;
+        private System.Windows.Forms.Button SQLite_SQL;
     }
 }

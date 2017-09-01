@@ -45,7 +45,7 @@ namespace Common.DbToText
                                  .Append(Wrap).Append(tab).Append(tab).Append("///")
                                  .Append(Wrap).Append(tab).Append(tab).Append("/// </summary>").Append(Wrap);
                 strBuilderContent.Append(tab).Append(tab).Append("public ").Append(fieid.Fieid_Type);
-                if (fieid.AllowDBNull && fieid.Fieid_Type != "String")
+                if (fieid.AllowDBNull.Value && fieid.Fieid_Type != "String")
                 {
                     strBuilderContent.Append("?");
                 }

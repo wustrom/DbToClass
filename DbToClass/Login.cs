@@ -24,6 +24,9 @@ namespace DbToClass
 
         private void Login_Load(object sender, EventArgs e)
         {
+            List<Fieid> fieids = new List<Fieid>();
+            fieids.Add(new Fieid { Fieid_Length=2});
+            var a = fieids.ToDataTable().ConvertToList<Fieid>();
             var table_Names = opertion.GetTableName();
             DataTable table = new DataTable();
             DataColumn column = new DataColumn();
@@ -104,6 +107,24 @@ namespace DbToClass
         }
 
         private void OperCreateBtn_Click(object sender, EventArgs e)
+        {
+            var table_Names = opertion.GetTableName();
+            var OperPath = "E:\\DB\\" + opertion.GetDbName() + "\\Oper";
+            if (!Directory.Exists(OperPath))
+            {
+                Directory.CreateDirectory(OperPath);
+            }
+            foreach (var item in table_Names)
+            {
+                var csOperPath = OperPath + "\\" + item + "Oper.cs";
+                var list = opertion.GetFieIdInfo(item);
+                var text = Common.DbToText.DBToSqlOption.Instance.GetText(list, item);
+                File.WriteAllLines(csOperPath, text.Split('\n'));
+            }
+            MessageBox.Show("数据库操作类已生成");
+        }
+
+        private void SQLite_SQL_Click(object sender, EventArgs e)
         {
             var table_Names = opertion.GetTableName();
             var OperPath = "E:\\DB\\" + opertion.GetDbName() + "\\Oper";
