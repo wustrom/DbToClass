@@ -96,6 +96,7 @@ namespace DbToClass
             {
                 Directory.CreateDirectory(ModelPath);
             }
+            DeleteAllFile(ModelPath);
             foreach (var item in table_Names)
             {
                 var csModelPath = ModelPath + "\\" + item + ".cs";
@@ -114,6 +115,7 @@ namespace DbToClass
             {
                 Directory.CreateDirectory(OperPath);
             }
+            DeleteAllFile(OperPath);
             foreach (var item in table_Names)
             {
                 var csOperPath = OperPath + "\\" + item + "Oper.cs";
@@ -124,22 +126,60 @@ namespace DbToClass
             MessageBox.Show("数据库操作类已生成");
         }
 
-        private void SQLite_SQL_Click(object sender, EventArgs e)
+        private void ModelCreate1Btn_Click(object sender, EventArgs e)
         {
             var table_Names = opertion.GetTableName();
-            var OperPath = "E:\\DB\\" + opertion.GetDbName() + "\\Oper";
+            var ModelPath = "E:\\DB\\" + opertion.GetDbName() + "\\ModelLambda";
+            if (!Directory.Exists(ModelPath))
+            {
+                Directory.CreateDirectory(ModelPath);
+            }
+            DeleteAllFile(ModelPath);
+            foreach (var item in table_Names)
+            {
+                var csModelPath = ModelPath + "\\" + item + ".cs";
+                var list = opertion.GetFieIdInfo(item);
+                var text = Common.DbToText.DbToModelLambda.Instance.GetText(list, item);
+                File.WriteAllLines(csModelPath, text.Split('\n'));
+            }
+            MessageBox.Show("数据库模型类已生成");
+        }
+
+        private void OperCreate2Btn_Click(object sender, EventArgs e)
+        {
+            var table_Names = opertion.GetTableName();
+            var OperPath = "E:\\DB\\" + opertion.GetDbName() + "\\OperLambda";
             if (!Directory.Exists(OperPath))
             {
                 Directory.CreateDirectory(OperPath);
             }
+            DeleteAllFile(OperPath);
             foreach (var item in table_Names)
             {
                 var csOperPath = OperPath + "\\" + item + "Oper.cs";
                 var list = opertion.GetFieIdInfo(item);
-                var text = Common.DbToText.DBToSqlOption.Instance.GetText(list, item);
+                var text = Common.DbToText.DBToSqlOptionLambda.Instance.GetText(list, item);
                 File.WriteAllLines(csOperPath, text.Split('\n'));
             }
             MessageBox.Show("数据库操作类已生成");
+        }
+
+        private void DeleteAllFile(string Path)
+        {
+            DirectoryInfo dir = new DirectoryInfo(Path);
+            FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+            foreach (FileSystemInfo i in fileinfo)
+            {
+                if (i is DirectoryInfo)            //判断是否文件夹
+                {
+                    DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                    subdir.Delete(true);          //删除子目录和文件
+                }
+                else
+                {
+                    File.Delete(i.FullName);      //删除指定文件
+                }
+            }
         }
     }
 }

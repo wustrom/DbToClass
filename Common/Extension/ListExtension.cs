@@ -40,25 +40,6 @@ namespace Common.Extension
             return table;
         }
 
-        /// <summary>
-        /// 转换List成为DataTable
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list">传入的List</param>
-        public static DataTable ToList<T>(this DataTable table) where T : class, new()
-        {
-            T t = new T();
-            Type type = t.GetType();
-            foreach (DataRow row in table.Rows)
-            {
-                foreach (var proInfo in type.GetProperties())
-                {
-                    //proInfo.SetValue(,);
-                }
-            }
-            return null;
-        }
-
         /// <summary>  
         /// 利用反射和泛型  
         /// </summary>  

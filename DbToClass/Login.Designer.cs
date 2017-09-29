@@ -30,13 +30,12 @@
         {
             this.dataGridView_FieIdInfo = new System.Windows.Forms.DataGridView();
             this.dataGridView_TableName = new System.Windows.Forms.DataGridView();
-            this.ModelBtn = new System.Windows.Forms.Button();
-            this.DbOpertionBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.ModelCreateBtn = new System.Windows.Forms.Button();
             this.OperCreateBtn = new System.Windows.Forms.Button();
-            this.SQLite_SQL = new System.Windows.Forms.Button();
+            this.ModelCreate1Btn = new System.Windows.Forms.Button();
+            this.OperCreate2Btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_FieIdInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableName)).BeginInit();
             this.panel1.SuspendLayout();
@@ -62,26 +61,6 @@
             this.dataGridView_TableName.TabIndex = 1;
             this.dataGridView_TableName.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_TableName_CellClick);
             // 
-            // ModelBtn
-            // 
-            this.ModelBtn.Location = new System.Drawing.Point(30, 560);
-            this.ModelBtn.Name = "ModelBtn";
-            this.ModelBtn.Size = new System.Drawing.Size(90, 23);
-            this.ModelBtn.TabIndex = 2;
-            this.ModelBtn.Text = "模型类";
-            this.ModelBtn.UseVisualStyleBackColor = true;
-            this.ModelBtn.Click += new System.EventHandler(this.ModelBtn_Click);
-            // 
-            // DbOpertionBtn
-            // 
-            this.DbOpertionBtn.Location = new System.Drawing.Point(150, 560);
-            this.DbOpertionBtn.Name = "DbOpertionBtn";
-            this.DbOpertionBtn.Size = new System.Drawing.Size(90, 23);
-            this.DbOpertionBtn.TabIndex = 3;
-            this.DbOpertionBtn.Text = "数据库操作类";
-            this.DbOpertionBtn.UseVisualStyleBackColor = true;
-            this.DbOpertionBtn.Click += new System.EventHandler(this.DbOpertionBtn_Click);
-            // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -104,45 +83,54 @@
             // 
             // ModelCreateBtn
             // 
-            this.ModelCreateBtn.Location = new System.Drawing.Point(270, 560);
+            this.ModelCreateBtn.Location = new System.Drawing.Point(20, 560);
             this.ModelCreateBtn.Name = "ModelCreateBtn";
-            this.ModelCreateBtn.Size = new System.Drawing.Size(90, 23);
+            this.ModelCreateBtn.Size = new System.Drawing.Size(91, 23);
             this.ModelCreateBtn.TabIndex = 5;
-            this.ModelCreateBtn.Text = "模型文件生成";
+            this.ModelCreateBtn.Text = "模型文件1生成";
             this.ModelCreateBtn.UseVisualStyleBackColor = true;
             this.ModelCreateBtn.Click += new System.EventHandler(this.ModelCreateBtn_Click);
             // 
             // OperCreateBtn
             // 
-            this.OperCreateBtn.Location = new System.Drawing.Point(390, 560);
+            this.OperCreateBtn.Location = new System.Drawing.Point(120, 560);
             this.OperCreateBtn.Name = "OperCreateBtn";
-            this.OperCreateBtn.Size = new System.Drawing.Size(90, 23);
+            this.OperCreateBtn.Size = new System.Drawing.Size(91, 23);
             this.OperCreateBtn.TabIndex = 6;
-            this.OperCreateBtn.Text = "操作文件生成";
+            this.OperCreateBtn.Text = "操作文件1生成";
             this.OperCreateBtn.UseVisualStyleBackColor = true;
             this.OperCreateBtn.Click += new System.EventHandler(this.OperCreateBtn_Click);
             // 
-            // SQLite_SQL
+            // ModelCreate1Btn
             // 
-            this.SQLite_SQL.Location = new System.Drawing.Point(510, 560);
-            this.SQLite_SQL.Name = "SQLite_SQL";
-            this.SQLite_SQL.Size = new System.Drawing.Size(90, 23);
-            this.SQLite_SQL.TabIndex = 8;
-            this.SQLite_SQL.Text = "SQLite语句";
-            this.SQLite_SQL.UseVisualStyleBackColor = true;
-            this.SQLite_SQL.Click += new System.EventHandler(this.SQLite_SQL_Click);
+            this.ModelCreate1Btn.Location = new System.Drawing.Point(220, 560);
+            this.ModelCreate1Btn.Name = "ModelCreate1Btn";
+            this.ModelCreate1Btn.Size = new System.Drawing.Size(91, 23);
+            this.ModelCreate1Btn.TabIndex = 8;
+            this.ModelCreate1Btn.Text = "模型文件2生成";
+            this.ModelCreate1Btn.UseVisualStyleBackColor = true;
+            this.ModelCreate1Btn.Click += new System.EventHandler(this.ModelCreate1Btn_Click);
+            // 
+            // OperCreate2Btn
+            // 
+            this.OperCreate2Btn.Location = new System.Drawing.Point(320, 560);
+            this.OperCreate2Btn.Name = "OperCreate2Btn";
+            this.OperCreate2Btn.Size = new System.Drawing.Size(91, 23);
+            this.OperCreate2Btn.TabIndex = 9;
+            this.OperCreate2Btn.Text = "操作文件2生成";
+            this.OperCreate2Btn.UseVisualStyleBackColor = true;
+            this.OperCreate2Btn.Click += new System.EventHandler(this.OperCreate2Btn_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 611);
-            this.Controls.Add(this.SQLite_SQL);
+            this.Controls.Add(this.OperCreate2Btn);
+            this.Controls.Add(this.ModelCreate1Btn);
             this.Controls.Add(this.OperCreateBtn);
             this.Controls.Add(this.ModelCreateBtn);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.DbOpertionBtn);
-            this.Controls.Add(this.ModelBtn);
             this.Controls.Add(this.dataGridView_TableName);
             this.Controls.Add(this.dataGridView_FieIdInfo);
             this.MaximumSize = new System.Drawing.Size(750, 650);
@@ -162,13 +150,12 @@
 
         private System.Windows.Forms.DataGridView dataGridView_FieIdInfo;
         private System.Windows.Forms.DataGridView dataGridView_TableName;
-        private System.Windows.Forms.Button ModelBtn;
-        private System.Windows.Forms.Button DbOpertionBtn;
         //private Common.Winform.MyPanel panel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button ModelCreateBtn;
         private System.Windows.Forms.Button OperCreateBtn;
-        private System.Windows.Forms.Button SQLite_SQL;
+        private System.Windows.Forms.Button ModelCreate1Btn;
+        private System.Windows.Forms.Button OperCreate2Btn;
     }
 }

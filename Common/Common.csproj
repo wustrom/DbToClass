@@ -45,8 +45,9 @@
   <ItemGroup>
     <Compile Include="DBOpertion.cs" />
     <Compile Include="DbToText\DbToModel.cs" />
+    <Compile Include="DbToText\DBToSqlOptionLambda.cs" />
     <Compile Include="DbToText\DBToSqlOption.cs" />
-    <Compile Include="DbToText\DbToSql_SQLite.cs" />
+    <Compile Include="DbToText\DbToModelLambda.cs" />
     <Compile Include="Extension\ListExtension.cs" />
     <Compile Include="models\Fieid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

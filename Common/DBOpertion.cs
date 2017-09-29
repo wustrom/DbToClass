@@ -60,7 +60,7 @@ namespace Common
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                SqlDataAdapter adpter = new SqlDataAdapter("Select * from " + tableName + " where 1!=1", conn);
+                SqlDataAdapter adpter = new SqlDataAdapter("Select * from [" + tableName + "] where 1!=1", conn);
                 //添加key
                 adpter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
                 adpter.Fill(table);

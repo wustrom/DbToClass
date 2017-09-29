@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Common.DbToText
 {
-    public class DbToModel : SingleTon<DbToModel>
+    public class DbToModelLambda : SingleTon<DbToModelLambda>
     {
         StringBuilder strBuilderHead = new StringBuilder();
         string Wrap = "\n";
@@ -14,18 +14,18 @@ namespace Common.DbToText
         string rightbra = "}";
         string Delimiter = ";";
         private string space = ConfigurationManager.AppSettings["namespace"].ToString();
-        public DbToModel()
+        public DbToModelLambda()
         {
             Head();
         }
+
         private void Head()
         {
             strBuilderHead.Append("using System;")
                           .Append(Wrap).Append(Wrap).Append("namespace ").Append(space).Append(".Models")
-                          
+
                           .Append(Wrap).Append(leftbra).Append(Wrap);
         }
-
 
         /// <summary>
         /// 内容文本
@@ -61,18 +61,6 @@ namespace Common.DbToText
                                         .Append(Wrap).Append(tab).Append(tab).Append(rightbra).Append(Wrap);
                 }
             }
-            strBuilderPrimaryKey.Append(tab).Append(tab).Append("/// <summary>")
-                                .Append(Wrap).Append(tab).Append(tab).Append("/// 排序语句格式为 字段名,字段名,字段名...")
-                                .Append(Wrap).Append(tab).Append(tab).Append("/// </summary>")
-                                .Append(Wrap).Append(tab).Append(tab).Append("public string OrderBy { get; set; }")
-                                .Append(Wrap).Append(tab).Append(tab).Append("/// <summary>")
-                                .Append(Wrap).Append(tab).Append(tab).Append("/// 排序语句 字段名,字段名,字段名...")
-                                .Append(Wrap).Append(tab).Append(tab).Append("/// </summary>")
-                                .Append(Wrap).Append(tab).Append(tab).Append("public string GroupBy { get; set; }")
-                                .Append(Wrap).Append(tab).Append(tab).Append("/// <summary>")
-                                .Append(Wrap).Append(tab).Append(tab).Append("/// 筛选字段")
-                                .Append(Wrap).Append(tab).Append(tab).Append("/// </summary>")
-                                .Append(Wrap).Append(tab).Append(tab).Append("public string Field { get; set; }").Append(Wrap);
             strBuilderContent.Append(strBuilderPrimaryKey).Append(Wrap).Append(tab).Append(rightbra).Append(Wrap).Append(rightbra);
             return strBuilderContent;
         }
