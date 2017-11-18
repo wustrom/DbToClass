@@ -25,7 +25,7 @@ namespace DbToClass
         private void Login_Load(object sender, EventArgs e)
         {
             List<Fieid> fieids = new List<Fieid>();
-            fieids.Add(new Fieid { Fieid_Length=2});
+            fieids.Add(new Fieid { Fieid_Length = 2 });
             var a = fieids.ToDataTable().ConvertToList<Fieid>();
             var table_Names = opertion.GetTableName();
             DataTable table = new DataTable();
@@ -163,6 +163,8 @@ namespace DbToClass
             }
             MessageBox.Show("数据库操作类已生成");
         }
+
+
 
         private void DeleteAllFile(string Path)
         {
